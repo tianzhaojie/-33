@@ -1,7 +1,6 @@
 <template>
   <div>
-    <van-button type="primary">主要按钮</van-button>
-    <div class="box"></div>
+    <router-view></router-view>
   </div>
 </template>
 

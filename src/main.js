@@ -11,7 +11,7 @@ import '@/assets/fonts/iconfont.css'
 
 // 引入适配
 import 'amfe-flexible'
-console.log(store)
+// console.log(store)
 Vue.use(Vant)
 Vue.config.productionTip = false
 

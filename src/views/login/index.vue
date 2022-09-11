@@ -84,6 +84,7 @@ export default {
         console.log(data)
         this.$toast.success('登录成功')
         this.$store.commit('setUser', data.data)
+        this.$router.push({ path: '/profile' })
       } catch (error) {
         // 细分错误
         // 如果时手机号或者验证码错误用户能知道

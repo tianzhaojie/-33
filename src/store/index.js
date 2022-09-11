@@ -1,21 +1,47 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getItem, setItem } from '@/utils/storage'
+// import { getItem, setItem } from '@/utils/storage'
+import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
-const TOKEN_KEY = 'TOUTIAO_USER'
+// const TOKEN_KEY = 'TOUTIAO_USER'
 
+// vuex-persistedstate
+// 下载包 yarn add vuex-persistedstate@3.2.1
+// 引入 import create
+// 调用 plugins:[createPersistedState(
+//   {
+// key: 'HEIMA-TOUTIAO'// 设置key名字本地存储名字
+// storage: window.sessionStorage // 设置存贮位置,
+// reducer 是一个函数指定持久化哪些数据 return一个对象 对象作为存储的value
+//   }
+// )]
+// 存到本地key默认值为vuex
 export default new Vuex.Store({
+  plugins: [createPersistedState({
+    key: 'HEIMA-TOUTIAO', // 设置key名字本地存储名字
+    // storage: window.sessionStorage // 设置存贮位置
+    reducer(state) { // 可以拿到state里面的数据 可以指定存哪些数据  不写就是全部存
+      console.log(state)
+      const { tokenObj } = state
+      return { tokenObj }
+    }
+  })],
   state: {
     // 一个对象,存储当前登录用户信息
-    user: getItem(TOKEN_KEY)
+    tokenObj: {
+    },
+    e: 1
   },
   getters: {
+    // 定义的计算属性标识有没有登录
+    islogin(state) {
+      return !!state.tokenObj.token
+    }
   },
   mutations: {
-    setUser (state, data) {
-      state.user = data
+    setUser(state, data) {
+      state.tokenObj = data
       // 防止数据丢失存到本地
-      setItem(TOKEN_KEY, state.user)
     }
   },
   actions: {
@@ -23,6 +49,7 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
 // vuex声明变量
 //  - 声明: 在state里
 //  - 取: $store.state.属性名

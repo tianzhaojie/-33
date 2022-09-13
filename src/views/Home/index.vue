@@ -12,14 +12,21 @@
     <!-- 文章详情 -->
     <Articlelist :id="item.id"></Articlelist>
   </van-tab>
-  <span class="toutiao toutiao-gengduo"></span>
+  <span class="toutiao toutiao-gengduo" @click="isShow = true"></span>
     </van-tabs>
+
+    <!-- 弹出层 -->
+    <van-popup v-model="isShow" position="bottom" :style="{ height: '100%' }"
+    closeable close-icon-position="top-left" >
+    <channel-edit :myChannels="channels" @change-active="[(isShow = false),(active = $event)]"></channel-edit>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import { getChannelAPI } from '@/api'
 import Articlelist from './components/Articlelist.vue'
+import ChannelEdit from './components/ChannelEdit.vue'
 export default {
   created() {
     this.getChannel()
@@ -27,7 +34,8 @@ export default {
   data() {
     return {
       active: 2,
-      channels: []
+      channels: [],
+      isShow: false
     }
   },
   // ?? 相当于||，常用于语句
@@ -48,7 +56,8 @@ export default {
     }
   },
   components: {
-    Articlelist
+    Articlelist,
+    ChannelEdit
   }
 }
 </script>

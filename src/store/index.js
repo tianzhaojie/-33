@@ -22,15 +22,15 @@ export default new Vuex.Store({
     // storage: window.sessionStorage // 设置存贮位置
     reducer(state) { // 可以拿到state里面的数据 可以指定存哪些数据  不写就是全部存
       console.log(state)
-      const { tokenObj } = state
-      return { tokenObj }
+      const { tokenObj, myChannels } = state
+      return { tokenObj, myChannels }
     }
   })],
   state: {
     // 一个对象,存储当前登录用户信息
     tokenObj: {
     },
-    e: 1
+    myChannels: []
   },
   getters: {
     // 定义的计算属性标识有没有登录
@@ -42,6 +42,14 @@ export default new Vuex.Store({
     setUser(state, data) {
       state.tokenObj = data
       // 防止数据丢失存到本地
+    },
+    /**
+     *
+     * @param {*} state
+     * @param {*} channels 传的是经过筛选后的数组
+     */
+    setMyChannels(state, channels) {
+      state.myChannels = channels
     }
   },
   actions: {

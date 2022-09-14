@@ -19,7 +19,7 @@
     <!-- 频道 -->
     <div class="recommend-pannel">
       <van-grid :column-num="4" gutter="10" :border="false">
-           <van-grid-item v-for="item in recommendChannels" :key="item.id" icon="plus" :text="item.name" />
+           <van-grid-item v-for="item in recommendChannels" :key="item.id" icon="plus" :text="item.name" @click="$emit('add-channel',item)" />
        </van-grid>
     </div>
   </div>
@@ -47,9 +47,9 @@ export default {
       console.log(data)
       this.allChannels = data.data.channels
     },
-    handleMyChannel({ name }, index) {
+    handleMyChannel({ name, id }, index) {
       if (this.isEdit && name !== '推荐') {
-        console.log('删除频道', name)
+        this.$emit('del-channel', id)
       } else {
         // 这两个事件都是由父组件完成的
         // 1关闭弹窗

@@ -1,6 +1,5 @@
 import request from '@/utils/request'
 
-// import store from '@/store'
 // console.log(store) // 有state
 // 划分跟后端接口文档
 // 登录请求

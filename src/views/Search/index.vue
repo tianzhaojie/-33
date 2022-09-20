@@ -63,6 +63,9 @@ export default {
       // 也可以是点击搜索建议时的关键词
       this.keywords = keywords
       this.isShowResult = true
+
+      // 解决不能提示选择同一个图片的bug   onchange时看value有没有变化在这里
+      this.$refs.file.value = ''
     }
   }
 

@@ -32,6 +32,7 @@ export default new Vuex.Store({
     },
     myChannels: [],
     histories: []
+    // userInfo: {}
   },
   getters: {
     // 定义的计算属性标识有没有登录
@@ -60,6 +61,9 @@ export default new Vuex.Store({
     setHistory(state, histories) {
       state.histories = histories
     }
+    // setUserInfo(state, obj) {
+    //   state.userInfo = obj
+    // }
   },
   actions: {
   },

@@ -5,7 +5,7 @@ import store from './store'
 // 引入vant
 import Vant from 'vant'
 import 'vant/lib/index.css'
-
+import 'github-markdown-css'
 // 引入font
 import '@/assets/fonts/iconfont.css'
 
